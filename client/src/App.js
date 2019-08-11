@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import Login from './containers/Login';
 import Registration from './containers/Registration';
+import IntershipTable from './containers/IntershipTable';
 
 import './App.css';
 
 function App() {
-  const isLoggedIn = false;
+  const [isLoggedIn, changeLoggedIn] = useState(false);
+
+  function submit(e, credentials) {
+    if (credentials.login === 'edo-intern' && credentials.pw === '7777') {
+      changeLoggedIn(true);
+    }
+    e.preventDefault();
+  }
+
   return (
     <Router>
       <div className='app-container'>
@@ -24,7 +33,7 @@ function App() {
           </nav>
         </header>
         
-        <Route path='/' exact component={() => isLoggedIn ? <div>Logged in</div> : <Login />}></Route>
+        <Route path='/' exact component={() => isLoggedIn ? <IntershipTable /> : <Login onSubmit={submit} />}></Route>
         <Route path='/register' component={Registration}></Route>
       </div>
     </Router>
