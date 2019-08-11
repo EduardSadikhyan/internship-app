@@ -12,7 +12,7 @@ export default function IntershipTable() {
         </thead>
         <tbody>
           <tr>
-            <td>JavaScript intership</td>
+            <td>JavaScript internship</td>
             <td>Telman, Eduard</td>
           </tr>
         </tbody>
