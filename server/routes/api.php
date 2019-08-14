@@ -13,14 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group(['prefix' => 'post'], function() {
-    Route::get('/', 'PostController@index');
-    Route::get('{id}', 'PostController@show');
-    Route::post('/', 'PostController@store');
-    Route::put('{id}', 'PostController@update');
-    Route::delete('{id}', 'PostController@destroy');
+Route::group(['prefix' => 'forTasks'], function() {
+    Route::get('/', 'forTask@index');
+    Route::get('{id}', 'forTask@show');
+    Route::post('/', 'forTask@store');
+    Route::put('{id}', 'forTaskr@update');
+    Route::delete('{id}', 'forTask@destroy');
 
 });
+
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

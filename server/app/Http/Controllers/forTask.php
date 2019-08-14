@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
+use\App\Task;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
 
-class PostController extends Controller
+class forTask extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,14 +14,14 @@ class PostController extends Controller
      */
     public function index()
     {
-        $models = Post::query()->get();
+        $models = Task::query()->get();
         return $models;
     }
 
 
     /**
      * Store a newly created resource in storage.
-     *
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -39,13 +38,13 @@ class PostController extends Controller
                 'errors' => $validator->errors()
             ]);
         }
-        $model = new Post();
+        $model = new Task();
         $model->title = $request->get('title');
         $model->description = $request->get('description');
         $model->save();
 
         return response()->json([
-            'message' => 'Post Saved Successfully',
+            'message' => 'Task Saved Successfully',
             'status' => 'success',
         ]);
     }
@@ -58,10 +57,10 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $model = Post::query()->find($id);
+        $model = Task::query()->find($id);
         if (!$model) {
             return response()->json([
-                'message' => 'Post does not exist',
+                'message' => 'Task does not exist',
                 'status' => 'fail',
             ]);
         }
@@ -78,10 +77,10 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $model = Post::query()->find($id);
+        $model = Task::query()->find($id);
         if (!$model) {
             return response()->json([
-                'message' => 'Post does not exist',
+                'message' => 'Task does not exist',
                 'status' => 'fail',
             ]);
         }
@@ -90,7 +89,7 @@ class PostController extends Controller
         $model->save();
 
         return response()->json([
-            'message' => 'Post Updated Successfully',
+            'message' => 'Task Updated Successfully',
             'status' => 'success',
         ]);
     }
@@ -103,18 +102,20 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $model = Post::query()->find($id);
+        $model = Task::query()->find($id);
         if (!$model) {
             return response()->json([
-                'message' => 'Post does not exist',
+                'message' => 'Task does not exist',
                 'status' => 'fail',
             ]);
         }
         $model->delete();
 
         return response()->json([
-            'message' => 'Post Deleted Successfully',
+            'message' => 'Task Deleted Successfully',
             'status' => 'success',
         ]);
     }
 }
+
+
