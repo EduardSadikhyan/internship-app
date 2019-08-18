@@ -1,4 +1,4 @@
-/* body {
+body {
   margin: 20px 40px;
   list-style: none;
 }
@@ -11,9 +11,9 @@ button {
 
 input {
     margin:5px;
-} */
+}
 
-
+/* 
 .CrudApp {
   margin: auto;
   width: 50%;
@@ -58,4 +58,4 @@ input {
   border-radius: 7px;
   border: 1px solid #00b894;
   margin: 3px 5px;
-} 
+} */
