@@ -17,7 +17,7 @@ Route::group(['prefix' => 'forTasks'], function() {
     Route::get('/', 'forTask@index');
     Route::get('{id}', 'forTask@show');
     Route::post('/', 'forTask@store');
-    Route::put('{id}', 'forTaskr@update');
+    Route::put('{id}', 'forTask@update');
     Route::delete('{id}', 'forTask@destroy');
 
 });
