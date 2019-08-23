@@ -1,4 +1,36 @@
 @import './styles/theme.css';
 @import './styles/login.css';
-@import './styles/registration.css';
 
+
+.app-container header {
+    background-color: #8bc34a;
+    box-shadow: 0 1px 8px rgba(0,0,0, 0.35);
+    display: flex;
+    align-items: center;
+}
+
+.app-container nav {
+    width: 80%;
+}
+
+.app-container header button {
+    margin-left: auto;
+    margin-right: 5%;
+}
+
+.app-container nav ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+}
+
+.app-container nav ul li {
+    margin: 10px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.app-container nav ul li a {
+    color: black;
+}

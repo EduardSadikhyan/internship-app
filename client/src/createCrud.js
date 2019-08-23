@@ -1,44 +1,29 @@
-import React, { Component } from "react";
-import { GetCrudDetails, UpdateCrud } from "./store/actions";
-import { connect } from "react-redux";
-// import Crud from "./Crud";
-import "./CrudApp.css";
-
-class CrudDetails extends Component {
+import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import {CreateCrud} from './store/actions'
+class CrudCreate extends Component {
     state = {
         title: "",
-        description: "",
-    };
-
-    componentDidMount() {
-        const { id } = this.props.match.params;
-        this.props.getCrudDetails(id);
+        description: ""
     }
-
-    componentDidUpdate(prevProps) {
-        // Typical usage (don't forget to compare props):
-        if (this.props.data && this.props.data !== prevProps.data) {
-            this.setState({ title: this.props.data.title, description: this.props.data.description })
-        }
-    }
-
-    onClickHandler = () => {
-        const { id } = this.props.match.params;
-        const { title, description } = this.state;
-        this.props.updateCrud(id, { title, description })
-        this.props.history.push("/crud");
-    };
-
     onChangeHandler = (event, name) => {
+        console.log("changed")
         const { value } = event.target;
         const { state } = this;
         this.setState({ ...state, [name]: value });
+        
     };
 
+    onClickHandler = () => {
+        console.log("Clicked")
+        const { title, description,  } = this.state;
+        this.props.createCrud({ title, description });
+        this.props.history.push("/");
+    };
 
     render() {
         return (
-            <div className="CrudDetails">
+            <div className=''>
                 <div className="myForm">
                     <input
                         type="text"
@@ -57,27 +42,22 @@ class CrudDetails extends Component {
                         }
                     />
                     <button className="myButton" onClick={this.onClickHandler}>
-                        Update
+                        submit
                     </button>
                 </div>
+
             </div>
         );
     }
 }
 
-const mapStateToProps = store => {
-    return {
-        data: store.crud.crud
-    };
-};
 const mapDispatchToProps = dispatch => {
     return {
-        getCrudDetails: id => dispatch(GetCrudDetails(id)),
-        updateCrud: (id, data) => dispatch(UpdateCrud(id, data)),
+        createCrud: data => dispatch(CreateCrud(data))
     };
 };
 
 export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
-)(CrudDetails);
+)(CrudCreate);

@@ -7,8 +7,11 @@ import { Users } from './constants/users';
 import Registration from './containers/Registration';
 import AdminDashboard from './containers/AdminDashboard';
 import IntershipTable from './containers/IntershipTable';
+import CrudDetails from "./CrudDetails"
+import CreateCrud from './createCrud';
 
 import './App.css';
+import SuperAdminDashboard from './containers/SuperAdminDashboard';
 
 function App() {
   const [isLoggedIn, changeLoggedIn] = useState(false);
@@ -32,9 +35,16 @@ function App() {
         return <IntershipTable />;
       case Roles.ADMIN:
         return <AdminDashboard />;
+      case Roles.SUADMIN:
+        return <SuperAdminDashboard />;
       default:
         return null;
     }
+  }
+
+  function logOut() {
+    changeUser(null);
+    changeLoggedIn(false);
   }
 
   return (
@@ -44,21 +54,20 @@ function App() {
           <nav>
             <ul>
               <li>
-                <Link to='/'>Home</Link>
+                <Link to='/'>Home </Link>
               </li>
-              <li>
-                <Link to='/register'>Registration</Link>
-              </li>
+              {!user && <li>
+                <Link to='/register'>Registration </Link>
+              </li>}
             </ul>
           </nav>
-          {user &&  <div className='user-info'>
-            <span> {user.login} </span>
-            <span> {user.role} </span>
-          </div>}
+          {user && <button onClick={logOut}>LogOut</button>}
         </header>
-        
+
         <Route path='/' exact component={() => isLoggedIn ? getLayout() : <Login onSubmit={submit} />}></Route>
         <Route path='/register' component={Registration}></Route>
+        <Route path='/crudDetails/:id' component={CrudDetails}></Route>
+        <Route path='/createCrud' component={CreateCrud}></Route>
       </div>
     </Router>
   );

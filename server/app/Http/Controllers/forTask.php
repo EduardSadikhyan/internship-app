@@ -46,6 +46,7 @@ class forTask extends Controller
         return response()->json([
             'message' => 'Task Saved Successfully',
             'status' => 'success',
+            "crud" => $model
         ]);
     }
 
@@ -62,6 +63,7 @@ class forTask extends Controller
             return response()->json([
                 'message' => 'Task does not exist',
                 'status' => 'fail',
+                
             ]);
         }
         return $model;
@@ -91,6 +93,7 @@ class forTask extends Controller
         return response()->json([
             'message' => 'Task Updated Successfully',
             'status' => 'success',
+            "crud" => $model
         ]);
     }
 
@@ -114,6 +117,7 @@ class forTask extends Controller
         return response()->json([
             'message' => 'Task Deleted Successfully',
             'status' => 'success',
+            'crud' => $model
         ]);
     }
 }

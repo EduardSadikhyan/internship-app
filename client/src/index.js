@@ -4,7 +4,8 @@ import "./index.css";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import thunk from "redux-thunk";
-import CrudApp from "./CrudApp";
+// import CrudApp from "./CrudApp";
+import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 import CrudReducer from "./store/reducers/crud";
@@ -25,7 +26,7 @@ const store = createStore(
 
 const app = (
     <Provider store={store}>
-        <CrudApp />
+        <App />
     </Provider>
 );
 

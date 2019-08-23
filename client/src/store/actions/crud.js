@@ -76,6 +76,7 @@ export function GetCrudDetails(id) {
         try {
             dispatch(Loading(true));
             const data = await Axios.get(`/forTasks/${id}`);
+            console.log("GetCrudDetails DATA",data)
             dispatch(CrudDetailsSuccess(data.data));
         } catch (error) {
             if (error.response && error.response.data.errors) {

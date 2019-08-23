@@ -10,5 +10,10 @@ export const Users = [
         login: 'eduard-admin',
         pw: '4444',
         role: Roles.ADMIN
+    },
+    {
+        login: "super-admin",
+        pw: '6666',
+        role: Roles.SUADMIN
     }
 ];

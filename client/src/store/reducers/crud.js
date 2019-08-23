@@ -13,7 +13,7 @@ const CrudReducer = (store = initStore, action) => {
         case actionTypes.CRUD_SUCCESS:
             return {
                 ...store,
-                data: action.payload.cruds
+                data: action.payload
             };
         case actionTypes.CRUD_DETAILS_SUCCESS:
             return {
@@ -23,12 +23,12 @@ const CrudReducer = (store = initStore, action) => {
         case actionTypes.UPDATE_CRUD_SUCCESS:
             return {
                 ...store,
-                crud: action.payload
+                data: store.data.map(d => d.id === action.payload.crud.id ? action.payload.crud: d)
             };
         case actionTypes.DELETE_CRUD_SUCCESS:
             return {
                 ...store,
-                crud: action.payload
+                data: store.data.filter( d => d.id !== action.payload.crud.id)
             };
         case actionTypes.CRUD_ERROR:
             return { ...store, error: action.payload };
@@ -37,7 +37,10 @@ const CrudReducer = (store = initStore, action) => {
         case actionTypes.LOADING_END:
             return { ...store, loading: !store.loading };
         case actionTypes.CREATE_CRUD_SUCCESS:
-            return { ...store };
+            return {
+                ...store,
+                data: [...store.data, action.payload.crud]
+            };
         default:
             return store;
     }
