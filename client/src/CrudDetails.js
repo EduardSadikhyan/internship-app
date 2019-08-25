@@ -25,8 +25,9 @@ class CrudDetails extends Component {
     onClickHandler = () => {
         const { id } = this.props.match.params;
         const { title, description } = this.state;
-        this.props.updateCrud(id, { title, description })
-        this.props.history.push("/crud");
+        this.props.updateCrud(id, { title, description });
+        this.props.history.goBack();
+        //console.log("Imananq",this.props)
     };
 
     onChangeHandler = (event, name) => {

@@ -1,9 +1,10 @@
 import React from 'react';
+import CrudApp from '../CrudApp';
 
 const AdminDashboard = () => (
-    <div className='admin-dashboard-container'>
-      Admin Dashboard works
-    </div>
-  );
-  
-  export default AdminDashboard;
+  <div className='admin-dashboard-container'>
+          <CrudApp roles={"Admin"}/>
+  </div>
+);
+
+export default AdminDashboard;

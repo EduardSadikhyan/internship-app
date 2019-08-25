@@ -4,19 +4,20 @@ import { CreateCrud, GetCrud, UpdateCrud, DeleteCrud } from "./store/actions";
 import { connect } from "react-redux";
 import Crud from "./Crud";
 import "./CrudApp.css";
+import { Roles } from './constants/roles';
 
 class CrudApp extends Component {
     state = {
         title: "",
         description: "",
-   /*      id: null,
-        edit: false */
+        /*      id: null,
+             edit: false */
     };
 
     componentDidMount() {
         this.props.getCrud({})
     }
-  
+
     onClickHandler = () => {
         const { title, description, /* edit, id */ } = this.state;
         // if (edit === true) {
@@ -41,54 +42,47 @@ class CrudApp extends Component {
         this.props.history.push('/createCrud')
     }
 
+    getTitle = (roles) => {
+        switch (roles) {
+            case Roles.SUADMIN:
+                return "Superadmin Dashboard"
+            case Roles.ADMIN:
+                return "Admin Dashboard"
+            case Roles.INTERN:
+                return "Intern"
+            default:
+        }
+
+    }
+
     render() {
+        const { roles } = this.props;
         return (
             <div className="CrudApp">
-                <h2>SuperAdmin Dashboard</h2>
-                <Link to='/createCrud' className="create-button">Create</Link>
-
-
-                
-                {/* <div className="myForm">  */}
-                   {/* <input
-                        type="text"
-                        value={this.state.title}
-                        placeholder="your title"
-                        className="formField"
-                        onChange={event => this.onChangeHandler(event, "title")}
-                    />
-                    <input
-                        type="text"
-                        value={this.state.description}
-                        placeholder="your description"
-                        className="formField"
-                        onChange={event =>
-                            this.onChangeHandler(event, "description")
-                        }
-                    />
-                    <button className="myButton" onClick={this.onClickHandler}>
-                       { /*{this.state.edit ? "update" : "submit"} */ }
-                       {/* submit */}
-                    {/* </button>  */}
-                {/* </div> */}
+                <h2>{this.getTitle(roles)} </h2>
+                {
+                    (roles !== Roles.INTERN) ?
+                        <Link to='/createCrud' className="create-button">Create</Link> : null
+                }
                 <div>
                     <div className="CrudDetails">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Surname</th>
+                                    <th>Title</th>
+                                    <th>Link</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            {this.props.data.map(d => (
-                                <Crud
-                                    key={d.id}
-                                    {...d}
-                                    deleteClicked={this.deleteClickHandler}
-                                    editClicked={this.editClickedHandler}
-                                />
-                            ))}
+                               {this.props.data.map(d => (
+                                    <Crud
+                                        key={d.id}
+                                        {...d}
+                                        roles={roles}
+                                        deleteClicked={this.deleteClickHandler}
+                                        editClicked={this.editClickedHandler}
+                                    />
+                                ))}
                             </tbody>
                         </table>
                     </div>

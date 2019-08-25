@@ -56,14 +56,13 @@ function App() {
               <li>
                 <Link to='/'>Home </Link>
               </li>
-              {!user && <li>
+              {/* {!user && <li>
                 <Link to='/register'>Registration </Link>
-              </li>}
+              </li>} */}
             </ul>
           </nav>
           {user && <button onClick={logOut}>LogOut</button>}
         </header>
-
         <Route path='/' exact component={() => isLoggedIn ? getLayout() : <Login onSubmit={submit} />}></Route>
         <Route path='/register' component={Registration}></Route>
         <Route path='/crudDetails/:id' component={CrudDetails}></Route>

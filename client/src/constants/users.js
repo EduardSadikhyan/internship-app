@@ -8,12 +8,12 @@ export const Users = [
     },
     {
         login: 'eduard-admin',
-        pw: '4444',
+        pw: '7777',
         role: Roles.ADMIN
     },
     {
         login: "super-admin",
-        pw: '6666',
+        pw: '7777',
         role: Roles.SUADMIN
     }
 ];
